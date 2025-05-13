@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PartController;
+use App\Http\Controllers\StockAdjustmentController;
 
 Route::post('/login', [UserController::class, 'login']);
 
@@ -24,7 +25,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/store-supplier', [SupplierController::class, 'store']);
     Route::put('/updatesupplier/{id}', [SupplierController::class, 'update']);
     Route::delete('/deletesupplier/{id}', [SupplierController::class, 'destroy']);
-
-
-    // Add other protected routes here
+    Route::post('/adjust-stock', [StockAdjustmentController::class, 'adjustStock']);
+    Route::get('/dashboard-stats', [StockAdjustmentController::class, 'getDashboardStats']);
+    Route::get('/sales-per-part', [StockAdjustmentController::class, 'getSalesPerPart']);
 });
